@@ -2,20 +2,19 @@
 
 namespace MathOfShapes.Shapes
 {
-    public class Circle : IShape
+    internal class Circle : Shape
     {
-        public byte Precision { get; }
-        public double Radius { get; }
-        public Circle(double radius, Precision precision)
+        internal double Radius { get; }
+        internal Circle(double radius, Precision precision) : base(precision)
         {
-            Precision = (byte)precision;
             Radius = radius;
+            Area = GetArea();
         }
 
-        double IShape.GetArea()
+        protected override double GetArea()
         {
             //Area of circle by radius A = PI * r^2
-            return Math.Round(Math.PI * Math.Pow(Radius, 2), Precision);
+            return Math.Round(Math.PI * Math.Pow(Radius, 2), (byte)Precision);
         }
     }
 }

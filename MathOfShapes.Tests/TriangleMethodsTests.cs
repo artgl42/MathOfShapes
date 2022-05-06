@@ -3,16 +3,16 @@ using MathOfShapes.Shapes;
 
 namespace MathOfShapes.Tests
 {
-    public class TriangleTests
+    public class TriangleMethodsTests
     {
         [Fact]
-        public void Triangle_IsSquareness()
+        public void SetTriangle_IsSquareness()
         {
             // Arrange
             double _sideA = 1;
             double _sideB = 1.8;
             double _sideC = 1.5;
-            Triangle _triangle = new Triangle(_sideA, _sideB, _sideC, Precision.Low);
+            var _triangle = new Triangle(_sideA, _sideB, _sideC, Precision.Low);
 
             // Act
             bool _isSquareness = _triangle.IsSquareness;
@@ -22,13 +22,13 @@ namespace MathOfShapes.Tests
         }
 
         [Fact]
-        public void Triangle_IsNotSquareness()
+        public void SetTriangle_IsNotSquareness()
         {
             // Arrange
             double _sideA = 1;
             double _sideB = 2;
             double _sideC = 1.5;
-            Triangle _triangle = new Triangle(_sideA, _sideB, _sideC, Precision.Low);
+            var _triangle = new Triangle(_sideA, _sideB, _sideC, Precision.Low);
 
             // Act
             bool _isSquareness = _triangle.IsSquareness;
@@ -38,34 +38,40 @@ namespace MathOfShapes.Tests
         }
 
         [Fact]
-        public void Triangle_GetArea_PrecisionLow()
+        public void SetTriangle_GetArea_PrecisionLow()
         {
             // Arrange
             double _sideA = 1;
             double _sideB = 1.8;
             double _sideC = 1.5;
-            Triangle _triangle = new Triangle(_sideA, _sideB, _sideC, Precision.Low);
+            var _triangle = Shape.Builder()
+                .SetRoundPrecision(Precision.Medium)
+                .SetTriangle(_sideA, _sideB, _sideC)
+                .Build();
             double _expected = 0.75;
 
             // Act
-            double _actual = MathOfShape.GetArea(_triangle);
+            double _actual = _triangle.Area;
 
             // Assert           
             Assert.Equal(_expected, _actual);
         }
 
         [Fact]
-        public void Triangle_GetArea_PrecisionHigh()
+        public void SetTriangle_GetArea_PrecisionHigh()
         {
             // Arrange
             double _sideA = 1.5;
             double _sideB = 1.7;
             double _sideC = 1.9;
-            Triangle _triangle = new Triangle(_sideA, _sideB, _sideC, Precision.High);
-            double _expected = 1.2163;
+            var _triangle = Shape.Builder()
+                .SetRoundPrecision(Precision.High)
+                .SetTriangle(_sideA, _sideB, _sideC)
+                .Build();
+            double _expected = 1.216;
 
             // Act
-            double _actual = MathOfShape.GetArea(_triangle);
+            double _actual = _triangle.Area;
 
             // Assert
             Assert.Equal(_expected, _actual);
