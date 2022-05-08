@@ -9,8 +9,14 @@ namespace MathOfShapes.Shapes
         {
             get
             {
-                var _shapeChecker = new ShapeChecker(Precision, ShapeParams);
-                return _shapeChecker.IsSquareness();
+                var _sideA = ShapeParams[ShapeParam.SideA];
+                var _sideB = ShapeParams[ShapeParam.SideB];
+                var _sideC = ShapeParams[ShapeParam.SideC];
+
+                // Pythagorean theorem c^2 = a^2 + b^2
+                return _sideA == Math.Round(Math.Sqrt(Math.Pow(_sideB, 2) + Math.Pow(_sideC, 2)), (byte)Precision)
+                || _sideB == Math.Round(Math.Sqrt(Math.Pow(_sideA, 2) + Math.Pow(_sideC, 2)), (byte)Precision)
+                || _sideC == Math.Round(Math.Sqrt(Math.Pow(_sideA, 2) + Math.Pow(_sideB, 2)), (byte)Precision);
             }
         }
 

@@ -10,9 +10,6 @@ namespace MathOfShapes.Shapes
             Dictionary<ShapeParam, double> shapeParams,
             Func<Dictionary<ShapeParam, double>, double> methodForArea) : base(precision, shapeParams, methodForArea) { }
 
-        protected override double GetAreaDefault()
-        {
-            return 0;
-        }
+        protected override double GetAreaDefault() => 0;
     }
 }

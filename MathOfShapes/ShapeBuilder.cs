@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 
 namespace MathOfShapes
-{  
-    public enum Precision { None, Low, Medium, High } // Some values (max 15) for Math.Round. For exp: Precision.Low means return value from GetArea() will be Math.Round(value, 1)
-    public enum ShapeParam { SideA, SideB, SideC, Radius } // Parameters available for setting for shapes
+{
+    // Precision - some values (max 15) for Math.Round. For exp: Precision.Low means return value from GetArea() will be Math.Round(value, 1)
+    public enum Precision { None, Low, Medium, High }
+    // ShapeParam - parameters available for setting for shapes
+    public enum ShapeParam { SideA, SideB, SideC, Radius }
 
 
     public class ShapeBuilder // Using the "Fluent Builder" pattern to creating shape

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MathOfShapes
 {
-    internal class ShapeChecker
+    internal class ShapeChecker // This class used to determine type of shape
     {
         public Precision Precision { get; }
         public double SideA { get; }
@@ -26,15 +25,7 @@ namespace MathOfShapes
 
         internal bool IsCircle()
         {
-            return SideA == 0 && SideB == 0 && SideC == 0 && Radius > 0;
-        }
-
-        internal bool IsSquareness()
-        {
-            // Pythagorean theorem c^2 = a^2 + b^2 
-            return SideA == Math.Round(Math.Sqrt(Math.Pow(SideB, 2) + Math.Pow(SideC, 2)), (byte)Precision)
-                || SideB == Math.Round(Math.Sqrt(Math.Pow(SideA, 2) + Math.Pow(SideC, 2)), (byte)Precision)
-                || SideC == Math.Round(Math.Sqrt(Math.Pow(SideA, 2) + Math.Pow(SideB, 2)), (byte)Precision);
+            return Radius > 0 && SideA == 0 && SideB == 0 && SideC == 0;
         }
     }
 }
