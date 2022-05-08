@@ -1,36 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MathOfShapes.Shapes
 {
     internal class Triangle : Shape
     {
-        public double SideA { get; }
-        public double SideB { get; }
-        public double SideC { get; }
-        public bool IsSquareness { get; }
-
-        internal Triangle(double sideA, double sideB, double sideC, Precision precision) : base (precision)
+        public bool IsSquareness
         {
-            SideA = sideA;
-            SideB = sideB;
-            SideC = sideC;
-            IsSquareness = CheckSquareness();
-            Area = GetArea();
+            get
+            {
+                var _shapeChecker = new ShapeChecker(Precision, ShapeParams);
+                return _shapeChecker.IsSquareness();
+            }
         }
 
-        protected override double GetArea()
-        {
-            //Heron's formula A = Sqrt(s * (s - a)(s - b)(s - c)), s - semiperimeter
-            var _semiperimeter = (SideA + SideB + SideC) / 2;
-            return Math.Round(Math.Sqrt(_semiperimeter * (_semiperimeter - SideA) * (_semiperimeter - SideB) * (_semiperimeter - SideC)), (byte)Precision);
-        }
+        internal Triangle(
+            Precision precision,
+            Dictionary<ShapeParam, double> shapeParams,
+            Func<Dictionary<ShapeParam, double>, double> methodForArea) : base(precision, shapeParams, methodForArea) { }
 
-        protected bool CheckSquareness()
+        protected override double GetAreaDefault()
         {
-            //Pythagorean theorem c^2 = a^2 + b^2 
-            return SideA == Math.Round(Math.Sqrt(Math.Pow(SideB, 2) + Math.Pow(SideC, 2)), (byte)Precision)
-                || SideB == Math.Round(Math.Sqrt(Math.Pow(SideA, 2) + Math.Pow(SideC, 2)), (byte)Precision)
-                || SideC == Math.Round(Math.Sqrt(Math.Pow(SideA, 2) + Math.Pow(SideB, 2)), (byte)Precision);
+            // Heron's formula A = Sqrt(s * (s - a)(s - b)(s - c)), s - semiperimeter
+            var _sideA = ShapeParams[ShapeParam.SideA];
+            var _sideB = ShapeParams[ShapeParam.SideB];
+            var _sideC = ShapeParams[ShapeParam.SideC];
+            var _s = (_sideA + _sideB + _sideC) / 2;
+            return Math.Round(Math.Sqrt(_s * (_s - _sideA) * (_s - _sideB) * (_s - _sideC)), (byte)Precision);
         }
     }
 }

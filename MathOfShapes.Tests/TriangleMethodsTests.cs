@@ -1,5 +1,6 @@
 using Xunit;
 using MathOfShapes.Shapes;
+using System.Collections.Generic;
 
 namespace MathOfShapes.Tests
 {
@@ -9,10 +10,13 @@ namespace MathOfShapes.Tests
         public void SetTriangle_IsSquareness()
         {
             // Arrange
-            double _sideA = 1;
-            double _sideB = 1.8;
-            double _sideC = 1.5;
-            var _triangle = new Triangle(_sideA, _sideB, _sideC, Precision.Low);
+            var _shapeParams = new Dictionary<ShapeParam, double>()
+                {
+                    [ShapeParam.SideA] = 1,
+                    [ShapeParam.SideB] =  1.8,
+                    [ShapeParam.SideC] = 1.5
+                };
+            var _triangle = new Triangle(Precision.Low, _shapeParams, null);
 
             // Act
             bool _isSquareness = _triangle.IsSquareness;
@@ -25,10 +29,13 @@ namespace MathOfShapes.Tests
         public void SetTriangle_IsNotSquareness()
         {
             // Arrange
-            double _sideA = 1;
-            double _sideB = 2;
-            double _sideC = 1.5;
-            var _triangle = new Triangle(_sideA, _sideB, _sideC, Precision.Low);
+            var _shapeParams = new Dictionary<ShapeParam, double>()
+            {
+                [ShapeParam.SideA] = 1,
+                [ShapeParam.SideB] = 2,
+                [ShapeParam.SideC] = 1.5
+            };
+            var _triangle = new Triangle(Precision.Low, _shapeParams, null);
 
             // Act
             bool _isSquareness = _triangle.IsSquareness;
@@ -41,12 +48,11 @@ namespace MathOfShapes.Tests
         public void SetTriangle_GetArea_PrecisionLow()
         {
             // Arrange
-            double _sideA = 1;
-            double _sideB = 1.8;
-            double _sideC = 1.5;
             var _triangle = Shape.Builder()
                 .SetRoundPrecision(Precision.Medium)
-                .SetTriangle(_sideA, _sideB, _sideC)
+                .SetSideA(1)
+                .SetSideB(1.8)
+                .SetSideC(1.5)
                 .Build();
             double _expected = 0.75;
 
@@ -61,12 +67,11 @@ namespace MathOfShapes.Tests
         public void SetTriangle_GetArea_PrecisionHigh()
         {
             // Arrange
-            double _sideA = 1.5;
-            double _sideB = 1.7;
-            double _sideC = 1.9;
             var _triangle = Shape.Builder()
                 .SetRoundPrecision(Precision.High)
-                .SetTriangle(_sideA, _sideB, _sideC)
+                .SetSideA(1.5)
+                .SetSideB(1.7)
+                .SetSideC(1.9)
                 .Build();
             double _expected = 1.216;
 

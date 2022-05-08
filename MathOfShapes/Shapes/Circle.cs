@@ -1,20 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MathOfShapes.Shapes
 {
     internal class Circle : Shape
     {
-        internal double Radius { get; }
-        internal Circle(double radius, Precision precision) : base(precision)
-        {
-            Radius = radius;
-            Area = GetArea();
-        }
+        internal Circle(
+            Precision precision,
+            Dictionary<ShapeParam, double> shapeParams,
+            Func<Dictionary<ShapeParam, double>, double> methodForArea) : base(precision, shapeParams, methodForArea) { }
 
-        protected override double GetArea()
+        protected override double GetAreaDefault()
         {
-            //Area of circle by radius A = PI * r^2
-            return Math.Round(Math.PI * Math.Pow(Radius, 2), (byte)Precision);
+            // Area of circle by radius A = PI * r^2
+            return Math.Round(Math.PI * Math.Pow(ShapeParams[ShapeParam.Radius], 2), (byte)Precision); 
         }
     }
 }

@@ -21,8 +21,10 @@ namespace MathOfShapes.Tests
             // Act
             var _actual = Shape.Builder()
                 .SetRoundPrecision(Precision.Low)
-                .SetTriangle(1, 2, 3)
-                .SetCircle(4)
+                .SetSideA(1)
+                .SetSideB(2)
+                .SetSideC(3)
+                .SetRadius(4)
                 .Build();
 
             // Assert
@@ -35,7 +37,9 @@ namespace MathOfShapes.Tests
             // Act
             var _actual = Shape.Builder()
                 .SetRoundPrecision(Precision.Low)
-                .SetTriangle(1, 2, 1.5)
+                .SetSideA(1)
+                .SetSideB(2)
+                .SetSideC(1.5)
                 .Build();
 
             // Assert
@@ -48,7 +52,9 @@ namespace MathOfShapes.Tests
             // Act
             var _actual = Shape.Builder()
                 .SetRoundPrecision(Precision.Low)
-                .SetTriangle(1, 1, 5)
+                .SetSideA(1)
+                .SetSideB(1)
+                .SetSideC(5)
                 .Build();
 
             // Assert
@@ -61,7 +67,7 @@ namespace MathOfShapes.Tests
             // Act
             var _actual = Shape.Builder()
                 .SetRoundPrecision(Precision.Low)
-                .SetCircle(4)
+                .SetRadius(4)
                 .Build();
 
             // Assert
@@ -74,11 +80,11 @@ namespace MathOfShapes.Tests
             // Act
             var _actual = Shape.Builder()
                 .SetRoundPrecision(Precision.Low)
-                .SetCircle(4)
+                .SetRadius(-1)
                 .Build();
 
             // Assert
-            Assert.IsType<Circle>(_actual);
+            Assert.IsType<Unknown>(_actual);
         }
     }
 }

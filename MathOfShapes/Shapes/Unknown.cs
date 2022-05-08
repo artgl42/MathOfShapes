@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MathOfShapes.Shapes
 {
     internal class Unknown : Shape
     {
-        public Unknown(Precision precision) : base(precision) { }
-        protected override double GetArea() => throw new NotImplementedException();
+        internal Unknown(
+            Precision precision,
+            Dictionary<ShapeParam, double> shapeParams,
+            Func<Dictionary<ShapeParam, double>, double> methodForArea) : base(precision, shapeParams, methodForArea) { }
+
+        protected override double GetAreaDefault()
+        {
+            return 0;
+        }
     }
 }
