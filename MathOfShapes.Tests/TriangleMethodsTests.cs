@@ -11,12 +11,13 @@ namespace MathOfShapes.Tests
         {
             // Arrange
             var _shapeParams = new Dictionary<ShapeParam, double>()
-                {
-                    [ShapeParam.SideA] = 1,
-                    [ShapeParam.SideB] =  1.8,
-                    [ShapeParam.SideC] = 1.5
-                };
-            var _triangle = new Triangle(Precision.Low, _shapeParams, null);
+            {
+                [ShapeParam.Precision] = 1,
+                [ShapeParam.SideA] = 1,
+                [ShapeParam.SideB] = 1.8,
+                [ShapeParam.SideC] = 1.5
+            };
+            var _triangle = new Triangle(_shapeParams, null);
 
             // Act
             bool _isSquareness = _triangle.IsSquareness;
@@ -31,11 +32,12 @@ namespace MathOfShapes.Tests
             // Arrange
             var _shapeParams = new Dictionary<ShapeParam, double>()
             {
+                [ShapeParam.Precision] = 1,
                 [ShapeParam.SideA] = 1,
                 [ShapeParam.SideB] = 2,
                 [ShapeParam.SideC] = 1.5
             };
-            var _triangle = new Triangle(Precision.Low, _shapeParams, null);
+            var _triangle = new Triangle(_shapeParams, null);
 
             // Act
             bool _isSquareness = _triangle.IsSquareness;
@@ -49,7 +51,7 @@ namespace MathOfShapes.Tests
         {
             // Arrange
             var _triangle = Shape.Builder()
-                .SetRoundPrecision(Precision.Medium)
+                .SetPrecision(Precision.Medium)
                 .SetSideA(1)
                 .SetSideB(1.8)
                 .SetSideC(1.5)
@@ -68,7 +70,7 @@ namespace MathOfShapes.Tests
         {
             // Arrange
             var _triangle = Shape.Builder()
-                .SetRoundPrecision(Precision.High)
+                .SetPrecision(Precision.High)
                 .SetSideA(1.5)
                 .SetSideB(1.7)
                 .SetSideC(1.9)

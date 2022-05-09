@@ -20,7 +20,7 @@ namespace MathOfShapes.Tests
         {
             // Act
             var _actual = Shape.Builder()
-                .SetRoundPrecision(Precision.Low)
+                .SetPrecision(Precision.Low)
                 .SetSideA(1)
                 .SetSideB(2)
                 .SetSideC(3)
@@ -36,7 +36,7 @@ namespace MathOfShapes.Tests
         {
             // Act
             var _actual = Shape.Builder()
-                .SetRoundPrecision(Precision.Low)
+                .SetPrecision(Precision.Low)
                 .SetSideA(1)
                 .SetSideB(2)
                 .SetSideC(1.5)
@@ -51,7 +51,7 @@ namespace MathOfShapes.Tests
         {
             // Act
             var _actual = Shape.Builder()
-                .SetRoundPrecision(Precision.Low)
+                .SetPrecision(Precision.Low)
                 .SetSideA(1)
                 .SetSideB(1)
                 .SetSideC(5)
@@ -66,7 +66,7 @@ namespace MathOfShapes.Tests
         {
             // Act
             var _actual = Shape.Builder()
-                .SetRoundPrecision(Precision.Low)
+                .SetPrecision(Precision.Low)
                 .SetRadius(4)
                 .Build();
 
@@ -79,7 +79,7 @@ namespace MathOfShapes.Tests
         {
             // Act
             var _actual = Shape.Builder()
-                .SetRoundPrecision(Precision.Low)
+                .SetPrecision(Precision.Low)
                 .SetRadius(-1)
                 .Build();
 

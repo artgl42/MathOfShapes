@@ -11,7 +11,7 @@ namespace MathOfShapes.Tests
             // Arrange
             double _radius = 5;
             var _circle = Shape.Builder()
-                .SetRoundPrecision(Precision.Medium)
+                .SetPrecision(Precision.Medium)
                 .SetRadius(_radius)
                 .Build();
             double _expected = 78.54;
@@ -29,7 +29,7 @@ namespace MathOfShapes.Tests
             // Arrange
             double _radius = 12;
             var _circle = Shape.Builder()
-                .SetRoundPrecision(Precision.High)
+                .SetPrecision(Precision.High)
                 .SetRadius(_radius)
                 .Build();
             double _expected = 452.389;
