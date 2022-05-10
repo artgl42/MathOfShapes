@@ -17,7 +17,7 @@ namespace MathOfShapes.Tests
             double _expected = 78.54;
 
             // Act
-            double _actual = _circle.Area;
+            double _actual = _circle[0].Area;
 
             // Assert
             Assert.Equal(_expected, _actual);
@@ -35,7 +35,7 @@ namespace MathOfShapes.Tests
             double _expected = 452.389;
 
             // Act
-            double _actual = _circle.Area;
+            double _actual = _circle[0].Area;
 
             // Assert
             Assert.Equal(_expected, _actual);

@@ -1,6 +1,6 @@
-using Xunit;
+using MathOfShapes.MethodsForArea;
 using MathOfShapes.Shapes;
-using System.Collections.Generic;
+using Xunit;
 
 namespace MathOfShapes.Tests
 {
@@ -10,14 +10,7 @@ namespace MathOfShapes.Tests
         public void SetTriangle_IsSquareness()
         {
             // Arrange
-            var _shapeParams = new Dictionary<ShapeParam, double>()
-            {
-                [ShapeParam.Precision] = 1,
-                [ShapeParam.SideA] = 1,
-                [ShapeParam.SideB] = 1.8,
-                [ShapeParam.SideC] = 1.5
-            };
-            var _triangle = new Triangle(_shapeParams, null);
+            var _triangle = new Triangle(new TriangleAreaByHeron(), Precision.Low, 1, 1.8, 1.5);
 
             // Act
             bool _isSquareness = _triangle.IsSquareness;
@@ -30,14 +23,7 @@ namespace MathOfShapes.Tests
         public void SetTriangle_IsNotSquareness()
         {
             // Arrange
-            var _shapeParams = new Dictionary<ShapeParam, double>()
-            {
-                [ShapeParam.Precision] = 1,
-                [ShapeParam.SideA] = 1,
-                [ShapeParam.SideB] = 2,
-                [ShapeParam.SideC] = 1.5
-            };
-            var _triangle = new Triangle(_shapeParams, null);
+            var _triangle = new Triangle(new TriangleAreaByHeron(), Precision.Low, 1, 2, 1.5);
 
             // Act
             bool _isSquareness = _triangle.IsSquareness;
@@ -59,7 +45,7 @@ namespace MathOfShapes.Tests
             double _expected = 0.75;
 
             // Act
-            double _actual = _triangle.Area;
+            double _actual = _triangle[0].Area;
 
             // Assert           
             Assert.Equal(_expected, _actual);
@@ -78,7 +64,7 @@ namespace MathOfShapes.Tests
             double _expected = 1.216;
 
             // Act
-            double _actual = _triangle.Area;
+            double _actual = _triangle[0].Area;
 
             // Assert
             Assert.Equal(_expected, _actual);

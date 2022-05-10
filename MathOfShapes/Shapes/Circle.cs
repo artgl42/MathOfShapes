@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MathOfShapes.MethodsForArea;
 
 namespace MathOfShapes.Shapes
 {
     internal class Circle : Shape
     {
+        public double Radius { get; }
+
         internal Circle(
-            Dictionary<ShapeParam, double> inShapeParams,
-            Func<Dictionary<ShapeParam, double>, double> methodForArea) : base(inShapeParams, methodForArea) { }
-
-
-        protected override double GetAreaDefault()
+            IAreaComputable areaMethod, 
+            Precision precision, 
+            double radius) : base(areaMethod)
         {
-            // Area of circle by radius A = PI * r^2
-            return Math.Round(Math.PI * Math.Pow(InShapeParams[ShapeParam.Radius], 2), Precision); 
+            Precision = precision;
+            Radius = radius;
         }
     }
 }

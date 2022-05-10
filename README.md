@@ -1,12 +1,15 @@
 # MathOfShapes (dll)
-Need to add this dll to the project (don't forget to add references) and you can use it.
+Add this dll to your project (don't forget to add reference) and you can use it.
 ## Example
 ```C#
-var _triangle = Shape.Builder()
-                .SetRoundPrecision(Precision.Medium)
-                .SetSideA(1)
-                .SetSideB(1.8)
-                .SetSideC(1.5)
+var shapes = Shape.Builder()
+                .SetPrecision(Precision.Low)
+                .SetSideA(1.5)
+                .SetSideB(1.6)
+                .SetSideC(1.4)
+                .SetRadius(5)
                 .Build();
-Console.WriteLine($"Area of shape = {_triangle.Area}");
+
+foreach (var shape in shapes)
+    Console.WriteLine($"{shape.Area}");
 ```
