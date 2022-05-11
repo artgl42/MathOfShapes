@@ -1,4 +1,4 @@
-﻿using MathOfShapes.MethodsForArea;
+﻿using System;
 
 namespace MathOfShapes.Shapes
 {
@@ -7,12 +7,13 @@ namespace MathOfShapes.Shapes
         public double Radius { get; }
 
         internal Circle(
-            IAreaComputable areaMethod, 
-            Precision precision, 
-            double radius) : base(areaMethod)
+            RoundAccuracy roundAccuracy,
+            double radius) : base(roundAccuracy) => Radius = radius;
+
+        protected override double GetArea()
         {
-            Precision = precision;
-            Radius = radius;
+            // Area of circle by radius A = PI * r^2
+            return Math.Round(Math.PI * Math.Pow(Radius, 2), (byte)RoundAccuracy);
         }
     }
 }

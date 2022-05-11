@@ -3,21 +3,18 @@ using Xunit;
 
 namespace MathOfShapes.Tests
 {
-    public class ShapeBuilderTests
+    public class BuilderTests
     {
         [Fact]
         public void SetTriangle_GetTriangle()
         {
             // Act
             var _actual = Shape.Builder()
-                .SetPrecision(Precision.Low)
-                .SetSideA(1)
-                .SetSideB(2)
-                .SetSideC(1.5)
+                .SetTriangle(RoundAccuracy.High, 1, 2, 1.5)
                 .Build();
 
             // Assert
-            Assert.IsType<Triangle>(_actual);
+            Assert.IsType<TriangleBySides>(_actual[0]);
         }
 
         [Fact]
@@ -25,12 +22,11 @@ namespace MathOfShapes.Tests
         {
             // Act
             var _actual = Shape.Builder()
-                .SetPrecision(Precision.Low)
-                .SetRadius(4)
+                .SetCircle(RoundAccuracy.High, 5.5)
                 .Build();
 
             // Assert
-            Assert.IsType<Circle>(_actual);
+            Assert.IsType<Circle>(_actual[0]);
         }
     }
 }

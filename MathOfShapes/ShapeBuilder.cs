@@ -1,66 +1,78 @@
-﻿using MathOfShapes.MethodsForArea;
-using MathOfShapes.Shapes;
+﻿using MathOfShapes.Creators;
 using System.Collections.Generic;
 
 namespace MathOfShapes
 {
-    // Precision - some values (max 15) for Math.Round. For exp: Precision.Low means return value Area will be Math.Round(value, 1)
-    public enum Precision { None, Low, Medium, High }
-
-    public class ShapeBuilder // Using the "Fluent Builder" pattern to creating shape
+    public class ShapeBuilder // Using the "Fluent Builder" pattern to creating shapes
     {
-        public Precision Precision { get; set; } = Precision.Low;
-        public double SideA { get; set; }
-        public double SideB { get; set; }
-        public double SideC { get; set; }
-        public double Radius { get; set; }
-
-        public ShapeBuilder SetPrecision(Precision precision)
+        readonly List<ShapeCreator> shapeCreators = new List<ShapeCreator>();
+        public ShapeBuilder SetTriangle(RoundAccuracy roundAccuracy, double sideA, double sideB, double sideC)
         {
-            Precision = precision;
+            var _triangleBySidesCreator = new TriangleBySidesCreator
+            {
+                RoundAccuracy = roundAccuracy,
+                SideA = sideA,
+                SideB = sideB,
+                SideC = sideC
+            };
+            shapeCreators.Add(_triangleBySidesCreator);
             return this;
         }
 
-        public ShapeBuilder SetSideA(double sideA)
+        public ShapeBuilder SetTriangle(RoundAccuracy roundAccuracy, double lengthBase, double height)
         {
-            SideA = sideA;
+            var _triangleByHeightCreator = new TriangleByHeightCreator
+            {
+                RoundAccuracy = roundAccuracy,
+                LengthBase = lengthBase,
+                Height = height
+            };
+            shapeCreators.Add(_triangleByHeightCreator);
             return this;
         }
 
-        public ShapeBuilder SetSideB(double sideB)
+        public ShapeBuilder SetCircle(RoundAccuracy roundAccuracy, double radius)
         {
-            SideB = sideB;
+            var _circleCreator = new CircleCreator
+            {
+                RoundAccuracy = roundAccuracy,
+                Radius = radius
+            };
+            shapeCreators.Add(_circleCreator);
             return this;
         }
 
-        public ShapeBuilder SetSideC(double sideC)
+        public ShapeBuilder SetRectangle(RoundAccuracy roundAccuracy, double length, double width = 0)
         {
-            SideC = sideC;
+            var _rectangleCreator = new RectangleCreator
+            {
+                RoundAccuracy = roundAccuracy,
+                Length = length,
+                Width = width
+            };
+            shapeCreators.Add(_rectangleCreator);
             return this;
         }
 
-        public ShapeBuilder SetRadius(double radius)
+        public ShapeBuilder SetParallelogram(RoundAccuracy roundAccuracy, double lengthBase, double height)
         {
-            Radius = radius;
+            var _parallelogramCreator = new ParallelogramCreator
+            {
+                LengthBase = lengthBase,
+                Height = height
+            };
+            shapeCreators.Add(_parallelogramCreator);
             return this;
         }
 
         public List<Shape> Build()
         {
-            var _listShapes = new List<Shape>();
+            var _shapes = new List<Shape>();
 
-            // If the sum of the two sides is greater than the third, then the triangle cannot exist
-            if (SideA + SideB > SideC && SideA + SideC > SideB && SideB + SideC > SideA)
-            {
-                _listShapes.Add(new Triangle(new TriangleAreaByHeron(), Precision, SideA, SideB, SideC));
-            }
+            foreach (var shapeCreator in shapeCreators)
+                _shapes.Add(shapeCreator.CreateShape());
 
-            if (Radius > 0)
-            {
-                _listShapes.Add(new Circle(new CircleAreaByRadius(), Precision, Radius));
-            }
-
-            return _listShapes;
+            return _shapes;
         }
     }
 }

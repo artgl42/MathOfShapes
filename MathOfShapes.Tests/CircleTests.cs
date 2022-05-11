@@ -1,18 +1,15 @@
 ﻿using Xunit;
-using MathOfShapes.Shapes;
 
 namespace MathOfShapes.Tests
 {
-    public class CircleMethodsTests
+    public class CircleTests
     {
         [Fact]
         public void SetCircle_GetArea_PrecisionMedium()
         {
             // Arrange
-            double _radius = 5;
             var _circle = Shape.Builder()
-                .SetPrecision(Precision.Medium)
-                .SetRadius(_radius)
+                .SetCircle(RoundAccuracy.Medium, 5)
                 .Build();
             double _expected = 78.54;
 
@@ -27,10 +24,8 @@ namespace MathOfShapes.Tests
         public void SetCircle_GetArea_PrecisionHigh()
         {
             // Arrange
-            double _radius = 12;
             var _circle = Shape.Builder()
-                .SetPrecision(Precision.High)
-                .SetRadius(_radius)
+                .SetCircle(RoundAccuracy.High, 12)
                 .Build();
             double _expected = 452.389;
 

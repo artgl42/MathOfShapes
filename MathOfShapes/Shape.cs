@@ -1,15 +1,11 @@
-﻿using MathOfShapes.MethodsForArea;
-
-namespace MathOfShapes
+﻿namespace MathOfShapes
 {
     public abstract class Shape
     {
-        readonly IAreaComputable areaMethod;
-        public Shape(IAreaComputable areaMethod) => this.areaMethod = areaMethod;
-
-        public static ShapeBuilder Builder() => new ShapeBuilder();
-        public Precision Precision { get; protected set; }
+        public RoundAccuracy RoundAccuracy { get; protected set; }
         public double Area => GetArea();
-        public double GetArea() => areaMethod.GetArea(this);
+        public static ShapeBuilder Builder() => new ShapeBuilder();
+        public Shape(RoundAccuracy roundAccuracy) => RoundAccuracy = roundAccuracy; 
+        protected abstract double GetArea();
     }
 }
